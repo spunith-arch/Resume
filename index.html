@@ -1,0 +1,2510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Punith Simpigar | Resume</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+}
+
+:root{
+    --white:#fff;
+    --gray:#999;
+    --dark:#050505;
+    --line:rgba(255,255,255,.14);
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#050505;
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-name{
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:-2px;
+}
+
+.loader-line{
+    width:150px;
+    height:2px;
+    background:#222;
+    margin-top:18px;
+    overflow:hidden;
+}
+
+.loader-line span{
+    display:block;
+    width:0;
+    height:100%;
+    background:#fff;
+    animation:loading 2s ease forwards;
+}
+
+@keyframes loading{
+    to{
+        width:100%;
+    }
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+
+    height:2px;
+    width:0;
+
+    background:#fff;
+
+    z-index:5000;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    padding:20px 5vw;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    z-index:3000;
+
+    mix-blend-mode:difference;
+}
+
+.logo{
+    color:#fff;
+    text-decoration:none;
+
+    font-size:18px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.nav-links{
+    display:flex;
+    gap:24px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+
+    position:relative;
+}
+
+.nav-links a::after{
+    content:"";
+
+    position:absolute;
+    left:0;
+    bottom:-5px;
+
+    width:0;
+    height:1px;
+
+    background:#fff;
+
+    transition:.3s;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+
+/* =========================================================
+   GRAIN
+========================================================= */
+
+.grain{
+    position:fixed;
+    inset:-50%;
+
+    width:200%;
+    height:200%;
+
+    z-index:2500;
+
+    pointer-events:none;
+
+    opacity:.035;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+
+    animation:grain .25s steps(2) infinite;
+}
+
+@keyframes grain{
+
+    0%{
+        transform:translate(0,0);
+    }
+
+    25%{
+        transform:translate(2%,-2%);
+    }
+
+    50%{
+        transform:translate(-2%,2%);
+    }
+
+    75%{
+        transform:translate(2%,2%);
+    }
+
+    100%{
+        transform:translate(-2%,-2%);
+    }
+}
+
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+.scene{
+    min-height:100vh;
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+}
+
+.container{
+    width:90%;
+    max-width:1150px;
+
+    position:relative;
+    z-index:10;
+}
+
+
+/* =========================================================
+   HERO BACKGROUND
+========================================================= */
+
+.cinematic-bg{
+    position:absolute;
+    inset:-12%;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(255,255,255,.11),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(255,255,255,.07),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            125deg,
+            #030303,
+            #181818,
+            #050505
+        );
+
+    transform:scale(1.08);
+}
+
+.cinematic-bg::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent 25%,
+            rgba(255,255,255,.05),
+            transparent 75%
+        );
+
+    animation:lightMove 8s linear infinite;
+}
+
+@keyframes lightMove{
+
+    from{
+        transform:translateX(-100%);
+    }
+
+    to{
+        transform:translateX(100%);
+    }
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.particles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    opacity:.35;
+
+    animation:particleMove 8s linear infinite;
+}
+
+.particle:nth-child(1){
+    left:10%;
+    top:20%;
+}
+
+.particle:nth-child(2){
+    left:25%;
+    top:70%;
+    animation-duration:11s;
+}
+
+.particle:nth-child(3){
+    left:50%;
+    top:30%;
+    animation-duration:9s;
+}
+
+.particle:nth-child(4){
+    left:75%;
+    top:65%;
+    animation-duration:12s;
+}
+
+.particle:nth-child(5){
+    left:88%;
+    top:20%;
+    animation-duration:10s;
+}
+
+.particle:nth-child(6){
+    left:60%;
+    top:85%;
+    animation-duration:13s;
+}
+
+@keyframes particleMove{
+
+    0%{
+        transform:translateY(0) scale(1);
+    }
+
+    50%{
+        transform:translateY(-80px) scale(1.5);
+    }
+
+    100%{
+        transform:translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+}
+
+.hero-content{
+    text-align:center;
+}
+
+.hero-small{
+    color:#999;
+
+    font-size:9px;
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    margin-bottom:22px;
+
+    opacity:0;
+    transform:translateY(20px);
+
+    animation:heroIn .8s 2s forwards;
+}
+
+.hero h1{
+    font-size:clamp(48px,8vw,105px);
+
+    line-height:.86;
+
+    letter-spacing:-5px;
+
+    text-transform:uppercase;
+
+    font-weight:900;
+
+    opacity:0;
+
+    transform:scale(.9);
+
+    animation:heroTitle 1.2s 2s forwards;
+}
+
+.hero h1 span{
+    display:block;
+}
+
+.outline{
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+}
+
+.hero-description{
+    max-width:560px;
+
+    margin:30px auto 0;
+
+    color:#999;
+
+    line-height:1.7;
+
+    font-size:13px;
+
+    opacity:0;
+
+    animation:heroIn .8s 2.3s forwards;
+}
+
+@keyframes heroIn{
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes heroTitle{
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.scroll-indicator{
+    position:absolute;
+
+    bottom:25px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+.scroll-line{
+    width:1px;
+    height:45px;
+
+    background:
+        linear-gradient(
+            #fff,
+            transparent
+        );
+
+    margin:10px auto 0;
+
+    animation:scrollLine 2s infinite;
+}
+
+@keyframes scrollLine{
+
+    0%{
+        transform:scaleY(0);
+        transform-origin:top;
+    }
+
+    50%{
+        transform:scaleY(1);
+        transform-origin:top;
+    }
+
+    51%{
+        transform-origin:bottom;
+    }
+
+    100%{
+        transform:scaleY(0);
+        transform-origin:bottom;
+    }
+}
+
+
+/* =========================================================
+   SECTION TITLES
+========================================================= */
+
+.section-number{
+    color:#666;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    margin-bottom:14px;
+}
+
+.section-title{
+    font-size:clamp(38px,6vw,75px);
+
+    line-height:.9;
+
+    letter-spacing:-3px;
+
+    text-transform:uppercase;
+}
+
+.section-title span{
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+    background:#080808;
+}
+
+.about-grid{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:70px;
+
+    align-items:center;
+}
+
+.about-text{
+    margin-top:25px;
+
+    color:#999;
+
+    font-size:14px;
+
+    line-height:1.8;
+}
+
+.about-text strong{
+    color:#fff;
+}
+
+.about-circle{
+    width:min(330px,65vw);
+
+    aspect-ratio:1;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    border-radius:50%;
+
+    position:relative;
+
+    animation:rotate 20s linear infinite;
+
+    margin:auto;
+}
+
+.about-circle::before,
+.about-circle::after{
+    content:"";
+
+    position:absolute;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius:50%;
+}
+
+.about-circle::before{
+    inset:30px;
+}
+
+.about-circle::after{
+    inset:65px;
+}
+
+.circle-text{
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    color:#888;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    white-space:nowrap;
+}
+
+@keyframes rotate{
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   SKILLS — SMALLER
+========================================================= */
+
+.skills{
+    background:#101010;
+}
+
+.skill-list{
+    margin-top:32px;
+
+    border-top:
+        1px solid
+        var(--line);
+}
+
+.skill{
+    display:grid;
+
+    grid-template-columns:
+        45px 1fr 90px;
+
+    gap:15px;
+
+    padding:15px 0;
+
+    border-bottom:
+        1px solid
+        var(--line);
+
+    align-items:center;
+}
+
+.skill-number{
+    color:#666;
+    font-size:9px;
+}
+
+.skill-name{
+    font-size:clamp(17px,2.2vw,24px);
+
+    text-transform:uppercase;
+
+    letter-spacing:-.5px;
+}
+
+.skill-type{
+    color:#666;
+
+    font-size:7px;
+
+    text-align:right;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   EDUCATION & EXPERIENCE — SMALLER
+========================================================= */
+
+.education{
+    background:#050505;
+}
+
+.education .section-title{
+    font-size:clamp(32px,5vw,62px);
+
+    letter-spacing:-2px;
+}
+
+.timeline{
+    margin-top:32px;
+
+    border-left:
+        1px solid #333;
+}
+
+.timeline-item{
+    position:relative;
+
+    padding:
+        0 0 35px 28px;
+}
+
+.timeline-item::before{
+    content:"";
+
+    position:absolute;
+
+    left:-4px;
+    top:4px;
+
+    width:7px;
+    height:7px;
+
+    border:
+        1px solid #fff;
+
+    border-radius:50%;
+
+    background:#050505;
+}
+
+.timeline-year{
+    color:#666;
+
+    font-size:8px;
+
+    letter-spacing:2.5px;
+
+    margin-bottom:7px;
+}
+
+.timeline-title{
+    font-size:clamp(18px,2.2vw,25px);
+
+    margin-bottom:7px;
+
+    letter-spacing:-.5px;
+}
+
+.timeline-text{
+    max-width:600px;
+
+    color:#888;
+
+    font-size:11px;
+
+    line-height:1.65;
+}
+
+
+/* =========================================================
+   PROJECT INTRO
+========================================================= */
+
+.projects-intro{
+    min-height:55vh;
+
+    background:#080808;
+
+    text-align:center;
+}
+
+.projects-intro h2{
+    font-size:clamp(48px,8vw,100px);
+
+    line-height:.85;
+
+    letter-spacing:-5px;
+
+    text-transform:uppercase;
+}
+
+.projects-intro h2 span{
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+}
+
+.projects-intro p{
+    max-width:500px;
+
+    color:#777;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    margin:30px auto 0;
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.project{
+    min-height:100vh;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    overflow:hidden;
+}
+
+.project-one{
+    background:
+        radial-gradient(
+            circle at 75% 25%,
+            rgba(255,255,255,.1),
+            transparent 30%
+        ),
+        #070707;
+}
+
+.project-two{
+    background:
+        radial-gradient(
+            circle at 25% 65%,
+            rgba(255,255,255,.1),
+            transparent 30%
+        ),
+        #0b0b0b;
+}
+
+.project-three{
+    background:
+        radial-gradient(
+            circle at 75% 70%,
+            rgba(255,255,255,.1),
+            transparent 30%
+        ),
+        #060606;
+}
+
+
+/* =========================================================
+   PROJECT BACKGROUND NUMBER
+========================================================= */
+
+.project-bg-number{
+    position:absolute;
+
+    right:-20px;
+    bottom:-70px;
+
+    font-size:clamp(180px,30vw,400px);
+
+    line-height:.7;
+
+    font-weight:900;
+
+    color:rgba(255,255,255,.025);
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   PROJECT VISUAL
+========================================================= */
+
+.project-visual{
+    position:absolute;
+
+    width:50vw;
+    height:65vh;
+
+    right:-10vw;
+
+    top:50%;
+
+    transform:
+        translateY(-50%)
+        translateX(100px)
+        scale(.88)
+        rotate(6deg);
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    overflow:hidden;
+
+    opacity:.18;
+
+    transition:
+        transform 1s ease,
+        opacity 1s ease;
+}
+
+.project-visual::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(255,255,255,.18),
+            transparent 20%
+        ),
+
+        radial-gradient(
+            circle at 70% 70%,
+            rgba(255,255,255,.08),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #222,
+            #050505
+        );
+
+    transform:scale(1.1);
+
+    transition:
+        transform 1s ease;
+}
+
+.project:hover .project-visual::before{
+    transform:scale(1);
+}
+
+.project-visual::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.07),
+            transparent
+        );
+
+    animation:
+        projectLight 5s linear infinite;
+}
+
+@keyframes projectLight{
+
+    from{
+        transform:translateX(-100%);
+    }
+
+    to{
+        transform:translateX(100%);
+    }
+}
+
+
+/* =========================================================
+   PROJECT CONTENT
+========================================================= */
+
+.project-content{
+    position:relative;
+
+    z-index:20;
+
+    width:90%;
+
+    max-width:1150px;
+
+    margin:auto;
+}
+
+.project-info{
+    width:58%;
+
+    opacity:.3;
+
+    transform:
+        translateX(-60px)
+        scale(.96);
+
+    transition:
+        transform 1s ease,
+        opacity 1s ease;
+}
+
+.project.active-project .project-info{
+    opacity:1;
+
+    transform:
+        translateX(0)
+        scale(1);
+}
+
+.project.active-project .project-visual{
+    transform:
+        translateY(-50%)
+        translateX(0)
+        scale(1)
+        rotate(3deg);
+
+    opacity:.65;
+}
+
+
+/* =========================================================
+   PROJECT TEXT
+========================================================= */
+
+.project-number{
+    color:#666;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    margin-bottom:18px;
+}
+
+.project-title{
+    font-size:clamp(38px,5.5vw,75px);
+
+    line-height:.88;
+
+    letter-spacing:-3px;
+
+    text-transform:uppercase;
+
+    max-width:650px;
+}
+
+.project-title span{
+    display:block;
+
+    color:transparent;
+
+    -webkit-text-stroke:1px #fff;
+}
+
+.project-description{
+    max-width:500px;
+
+    margin-top:25px;
+
+    color:#999;
+
+    font-size:13px;
+
+    line-height:1.8;
+}
+
+.project-tech{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-top:22px;
+}
+
+.project-tech span{
+    padding:7px 11px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    color:#888;
+
+    font-size:8px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+}
+
+.project-button{
+    display:inline-flex;
+
+    margin-top:25px;
+
+    padding:11px 18px;
+
+    color:#fff;
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    text-decoration:none;
+
+    text-transform:uppercase;
+
+    font-size:8px;
+
+    letter-spacing:1.5px;
+
+    transition:.3s;
+}
+
+.project-button:hover{
+    background:#fff;
+    color:#000;
+}
+
+
+/* =========================================================
+   PROJECT LABEL
+========================================================= */
+
+.project-scroll{
+    position:absolute;
+
+    right:5%;
+
+    bottom:30px;
+
+    color:#555;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    z-index:50;
+}
+
+.project-divider{
+    position:absolute;
+
+    bottom:0;
+    left:5%;
+
+    width:90%;
+
+    height:1px;
+
+    background:
+        rgba(255,255,255,.1);
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact{
+    min-height:100vh;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #1a1a1a,
+            #050505 60%
+        );
+}
+
+.contact-title{
+    font-size:clamp(48px,8vw,100px);
+
+    line-height:.85;
+
+    letter-spacing:-5px;
+
+    text-transform:uppercase;
+}
+
+.contact-title span{
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+}
+
+.contact-text{
+    max-width:500px;
+
+    margin:30px auto;
+
+    color:#888;
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.contact-details{
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+    margin-top:25px;
+}
+
+.contact-link{
+    color:#fff;
+
+    text-decoration:none;
+
+    border-bottom:
+        1px solid #444;
+
+    padding-bottom:6px;
+
+    font-size:12px;
+}
+
+.download-btn{
+    margin-top:35px;
+
+    padding:12px 22px;
+
+    background:transparent;
+
+    color:#fff;
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    cursor:pointer;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.5px;
+
+    font-size:8px;
+
+    transition:.3s;
+}
+
+.download-btn:hover{
+    background:#fff;
+    color:#000;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:22px 5vw;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    background:#050505;
+
+    border-top:
+        1px solid #151515;
+
+    color:#555;
+
+    font-size:8px;
+
+    letter-spacing:1.5px;
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:
+        translateY(45px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.show{
+    opacity:1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:800px){
+
+    .nav{
+        padding:18px 20px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:
+            clamp(
+                45px,
+                14vw,
+                75px
+            );
+
+        letter-spacing:-3px;
+    }
+
+    .hero-description{
+        font-size:12px;
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .about-circle{
+        width:250px;
+    }
+
+
+    /* SMALLER SKILLS */
+
+    .skill{
+        grid-template-columns:
+            35px 1fr;
+
+        padding:13px 0;
+    }
+
+    .skill-number{
+        font-size:8px;
+    }
+
+    .skill-name{
+        font-size:18px;
+    }
+
+    .skill-type{
+        grid-column:2;
+
+        text-align:left;
+
+        font-size:7px;
+    }
+
+
+    /* SMALLER EDUCATION */
+
+    .education .section-title{
+        font-size:
+            clamp(
+                30px,
+                9vw,
+                48px
+            );
+    }
+
+    .timeline{
+        margin-top:25px;
+    }
+
+    .timeline-item{
+        padding:
+            0 0 28px 24px;
+    }
+
+    .timeline-title{
+        font-size:19px;
+    }
+
+    .timeline-text{
+        font-size:10px;
+
+        max-width:350px;
+    }
+
+
+    /* PROJECT MOBILE */
+
+    .project-content{
+        width:88%;
+    }
+
+    .project-info{
+        width:100%;
+    }
+
+    .project-title{
+        font-size:
+            clamp(
+                34px,
+                10vw,
+                58px
+            );
+
+        letter-spacing:-2px;
+
+        max-width:450px;
+    }
+
+    .project-description{
+        font-size:12px;
+
+        max-width:360px;
+    }
+
+    .project-visual{
+        width:90vw;
+
+        height:55vh;
+
+        right:-40vw;
+
+        opacity:.25 !important;
+    }
+
+    .project-bg-number{
+        font-size:250px;
+    }
+
+    .projects-intro h2{
+        font-size:
+            clamp(
+                48px,
+                13vw,
+                80px
+            );
+    }
+
+    .contact-title{
+        font-size:
+            clamp(
+                45px,
+                13vw,
+                80px
+            );
+    }
+
+    footer{
+        flex-direction:column;
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print{
+
+    .loader,
+    .progress,
+    .nav,
+    .grain,
+    .scroll-indicator,
+    .project-scroll,
+    .download-btn{
+        display:none !important;
+    }
+
+    body{
+        background:#fff;
+        color:#000;
+    }
+
+    .scene,
+    .project{
+        min-height:auto;
+
+        padding:40px;
+
+        page-break-inside:avoid;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     LOADER
+========================================================= -->
+
+<div class="loader" id="loader">
+
+    <div class="loader-name">
+        PUNITH
+    </div>
+
+    <div class="loader-line">
+        <span></span>
+    </div>
+
+</div>
+
+<div class="progress" id="progress"></div>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="nav">
+
+    <a href="#home" class="logo">
+        PRINCE
+    </a>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+        <li>
+            <a href="#skills">Skills</a>
+        </li>
+
+        <li>
+            <a href="#education">Education</a>
+        </li>
+
+        <li>
+            <a href="#projects">Projects</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<div class="grain"></div>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="scene hero" id="home">
+
+    <div class="cinematic-bg"></div>
+
+    <div class="particles">
+
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+        <span class="particle"></span>
+
+    </div>
+
+    <div class="container hero-content">
+
+        <div class="hero-small">
+            Professional Resume • Portfolio
+        </div>
+
+        <h1>
+
+            <span>Punith</span>
+
+            <span class="outline">
+                Simpigar
+            </span>
+
+        </h1>
+
+        <p class="hero-description">
+
+            Computer Science student passionate about
+            technology, web development, creative digital
+            experiences and continuous learning.
+
+        </p>
+
+    </div>
+
+    <div class="scroll-indicator">
+
+        Scroll to explore
+
+        <div class="scroll-line"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="scene about" id="about">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+            <div class="reveal">
+
+                <div class="section-number">
+                    01 — PROFILE
+                </div>
+
+                <h2 class="section-title">
+
+                    About
+                    <span>Me</span>
+
+                </h2>
+
+                <p class="about-text">
+
+                    Hello, I am
+                    <strong>Punith Simpigar</strong>.
+
+                    I am a Computer Science student interested
+                    in creating modern websites, learning new
+                    technologies and developing practical projects.
+
+                    <br><br>
+
+                    I enjoy solving problems, communicating with
+                    people and improving my technical knowledge
+                    through hands-on projects.
+
+                    <br><br>
+
+                    My goal is to build useful digital products
+                    while continuously developing my technical
+                    and professional skills.
+
+                </p>
+
+            </div>
+
+            <div class="reveal">
+
+                <div class="about-circle">
+
+                    <div class="circle-text">
+                        CREATE • LEARN • BUILD
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SKILLS — SMALLER
+========================================================= -->
+
+<section class="scene skills" id="skills">
+
+    <div class="container">
+
+        <div class="reveal">
+
+            <div class="section-number">
+                02 — CAPABILITIES
+            </div>
+
+            <h2 class="section-title">
+
+                My
+                <span>Skills</span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="skill-list">
+
+            <div class="skill reveal">
+
+                <div class="skill-number">
+                    01
+                </div>
+
+                <div class="skill-name">
+                    HTML & CSS
+                </div>
+
+                <div class="skill-type">
+                    Web
+                </div>
+            </div>
+
+
+            <div class="skill reveal">
+
+                <div class="skill-number">
+                    02
+                </div>
+
+                <div class="skill-name">
+                    Communication
+                </div>
+
+                <div class="skill-type">
+                    Professional
+                </div>
+
+            </div>
+
+
+            <div class="skill reveal">
+
+                <div class="skill-number">
+                    03
+                </div>
+
+                <div class="skill-name">
+                    Problem Solving
+                </div>
+
+                <div class="skill-type">
+                    Analytical
+                </div>
+
+            </div>
+
+
+            <div class="skill reveal">
+
+                <div class="skill-number">
+                    04
+                </div>
+
+                <div class="skill-name">
+                    Team Work
+                </div>
+
+                <div class="skill-type">
+                    Collaboration
+                </div>
+
+            </div>
+
+
+            <div class="skill reveal">
+
+                <div class="skill-number">
+                    05
+                </div>
+
+                <div class="skill-name">
+                    Quick Learning
+                </div>
+
+                <div class="skill-type">
+                    Growth
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     EDUCATION & EXPERIENCE — SMALLER
+========================================================= -->
+
+<section class="scene education" id="education">
+
+    <div class="container">
+
+        <div class="reveal">
+
+            <div class="section-number">
+                03 — JOURNEY
+            </div>
+
+            <h2 class="section-title">
+
+                Education
+                <span>&</span>
+                Experience
+
+            </h2>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-year">
+                    CURRENT
+                </div>
+
+                <h3 class="timeline-title">
+                    Computer Science & Engineering
+                </h3>
+
+                <p class="timeline-text">
+
+                    Currently developing knowledge in computer
+                    science, programming, web development,
+                    databases and software-related technologies.
+
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-year">
+                    PROJECT WORK
+                </div>
+
+                <h3 class="timeline-title">
+                    Web Development Projects
+                </h3>
+
+                <p class="timeline-text">
+
+                    Building practical websites and student
+                    projects using HTML, CSS, JavaScript and
+                    modern user-interface concepts.
+
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-year">
+                    DEVELOPMENT
+                </div>
+
+                <h3 class="timeline-title">
+                    Continuous Learning
+                </h3>
+
+                <p class="timeline-text">
+
+                    Exploring new technologies and improving
+                    programming, communication, teamwork and
+                    problem-solving abilities.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECT INTRO
+========================================================= -->
+
+<section class="scene projects-intro" id="projects">
+
+    <div class="container">
+
+        <div class="section-number">
+            04 — SELECTED WORK
+        </div>
+
+        <h2>
+
+            My
+
+            <span>
+                Projects
+            </span>
+
+        </h2>
+
+        <p>
+            Scroll down to explore each project individually.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECT 01
+========================================================= -->
+
+<section class="project project-one">
+
+    <div class="project-bg-number">
+        01
+    </div>
+
+    <div class="project-visual"></div>
+
+    <div class="project-content">
+
+        <div class="project-info">
+
+            <div class="project-number">
+                PROJECT 01
+            </div>
+
+            <h2 class="project-title">
+
+                Student
+
+                <span>
+                    Management
+                </span>
+
+                System
+
+            </h2>
+
+            <p class="project-description">
+
+                A professional student management system
+                designed to manage departments, mentors,
+                students, semesters and marks through a
+                modern web interface.
+
+            </p>
+
+            <div class="project-tech">
+
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>DATABASE</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="project-scroll">
+        Scroll → Project 02
+    </div>
+
+    <div class="project-divider"></div>
+
+</section>
+
+
+<!-- =========================================================
+     PROJECT 02
+========================================================= -->
+
+<section class="project project-two">
+
+    <div class="project-bg-number">
+        02
+    </div>
+
+    <div class="project-visual"></div>
+
+    <div class="project-content">
+
+        <div class="project-info">
+
+            <div class="project-number">
+                PROJECT 02
+            </div>
+
+            <h2 class="project-title">
+
+                Code
+
+                <span>
+                    Hub
+                </span>
+
+            </h2>
+
+            <p class="project-description">
+
+                A GitHub-style Computer Science project
+                sharing platform where students can create
+                profiles, discover projects and share their
+                college project work.
+
+            </p>
+
+            <div class="project-tech">
+
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Java</span>
+                <span>DATABASE</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="project-divider"></div>
+
+</section>
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section class="scene contact" id="contact">
+
+    <div class="container">
+
+        <div class="section-number">
+            05 — CONTACT
+        </div>
+
+        <h2 class="contact-title">
+
+            Let's
+
+            <span>
+                Connect
+            </span>
+
+        </h2>
+
+        <p class="contact-text">
+
+            I am interested in learning, building projects,
+            collaborating with others and exploring new
+            opportunities in technology and web development.
+
+        </p>
+
+        <div class="contact-details">
+
+            <a
+                href="mailto:yourgmail@gmail.com"
+                class="contact-link"
+            >
+                yourgmail@gmail.com
+            </a>
+
+            <a
+                href="#"
+                class="contact-link"
+            >
+                LinkedIn
+            </a>
+
+            <a
+                href="#"
+                class="contact-link"
+            >
+                GitHub
+            </a>
+
+        </div>
+
+        <button
+            class="download-btn"
+            onclick="window.print()"
+        >
+            Download / Print Resume →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <span>
+        © PRINCE
+    </span>
+
+    <span>
+        COMPUTER SCIENCE & ENGG
+    </span>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+/* LOADER */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        setTimeout(
+            function(){
+
+                document
+                    .getElementById("loader")
+                    .classList
+                    .add("hide");
+
+            },
+            2200
+        );
+
+    }
+);
+
+
+/* SCROLL PROGRESS */
+
+function updateProgress(){
+
+    const scrollTop =
+        window.scrollY;
+
+    const height =
+        document.documentElement
+        .scrollHeight
+        -
+        window.innerHeight;
+
+    const percentage =
+        (scrollTop / height) * 100;
+
+    document
+        .getElementById("progress")
+        .style.width =
+        percentage + "%";
+
+}
+
+window.addEventListener(
+    "scroll",
+    updateProgress
+);
+
+
+/* REVEAL ANIMATION */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const revealObserver =
+    new IntersectionObserver(
+
+        function(entries){
+
+            entries.forEach(
+                function(entry){
+
+                    if(entry.isIntersecting){
+
+                        entry.target
+                            .classList
+                            .add("show");
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold:.15
+        }
+
+    );
+
+revealElements.forEach(
+    function(element){
+
+        revealObserver.observe(element);
+
+    }
+);
+
+
+/* PROJECT ONE-BY-ONE */
+
+const projectSections =
+    document.querySelectorAll(".project");
+
+const projectObserver =
+    new IntersectionObserver(
+
+        function(entries){
+
+            entries.forEach(
+                function(entry){
+
+                    if(entry.isIntersecting){
+
+                        entry.target
+                            .classList
+                            .add("active-project");
+
+                    }
+                    else{
+
+                        entry.target
+                            .classList
+                            .remove("active-project");
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold:.45
+        }
+
+    );
+
+projectSections.forEach(
+    function(project){
+
+        projectObserver.observe(project);
+
+    }
+);
+
+
+/* PROJECT CAMERA EFFECT */
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        projectSections.forEach(
+            function(project){
+
+                const rect =
+                    project.getBoundingClientRect();
+
+                const center =
+                    window.innerHeight / 2;
+
+                const distance =
+                    rect.top - center;
+
+                const percentage =
+                    distance /
+                    window.innerHeight;
+
+                const visual =
+                    project.querySelector(
+                        ".project-visual"
+                    );
+
+                const number =
+                    project.querySelector(
+                        ".project-bg-number"
+                    );
+
+                if(visual){
+
+                    const x =
+                        percentage * 70;
+
+                    const scale =
+                        1 -
+                        Math.min(
+                            Math.abs(
+                                percentage
+                            ) * .08,
+                            .08
+                        );
+
+                    visual.style.transform =
+                        `
+                        translateY(-50%)
+                        translateX(${x}px)
+                        scale(${scale})
+                        rotate(3deg)
+                        `;
+
+                }
+
+                if(number){
+
+                    number.style.transform =
+                        `
+                        translateX(
+                            ${percentage * -60}px
+                        )
+                        `;
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* HERO PARALLAX */
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        const backgrounds =
+            document.querySelectorAll(
+                ".cinematic-bg"
+            );
+
+        backgrounds.forEach(
+            function(bg){
+
+                const movement =
+                    window.scrollY * .02;
+
+                bg.style.transform =
+                    `
+                    translateY(${movement}px)
+                    scale(1.08)
+                    `;
+
+            }
+        );
+
+    }
+);
+
+
+/* MOUSE MOVEMENT */
+
+document.addEventListener(
+    "mousemove",
+    function(event){
+
+        const x =
+            event.clientX /
+            window.innerWidth -
+            .5;
+
+        const y =
+            event.clientY /
+            window.innerHeight -
+            .5;
+
+        document
+            .querySelectorAll(
+                ".project-visual"
+            )
+            .forEach(
+                function(visual){
+
+                    visual.style.marginLeft =
+                        `${x * 10}px`;
+
+                    visual.style.marginTop =
+                        `${y * 10}px`;
+
+                }
+            );
+
+    }
+);
+
+
+/* ACTIVE NAVIGATION */
+
+const sections =
+    document.querySelectorAll("section");
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav-links a"
+    );
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        let current = "";
+
+        sections.forEach(
+            function(section){
+
+                const top =
+                    section.offsetTop;
+
+                if(
+                    window.scrollY >=
+                    top - 300
+                ){
+
+                    current =
+                        section.id;
+
+                }
+
+            }
+        );
+
+        navLinks.forEach(
+            function(link){
+
+                link.style.opacity = ".45";
+
+                if(
+                    link.getAttribute("href") ===
+                    "#" + current
+                ){
+
+                    link.style.opacity = "1";
+
+                }
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
